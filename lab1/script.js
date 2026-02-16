@@ -15,6 +15,16 @@ function toDeg(rad) {
     return rad * 180 / Math.PI;
 }
 
+function triangleInequality(a, b, c) {
+    return (
+        a > 0 &&
+        b > 0 &&
+        c > 0 &&
+        c < a + b &&
+        c > Math.abs(a - b)
+    );
+}
+
 function triangle(v1, t1, v2, t2) {
 
     const validTypes = [
@@ -29,7 +39,11 @@ function triangle(v1, t1, v2, t2) {
         console.log("Невірні або несумісні типи аргументів. Перечитайте інструкцію.");
         return "failed";
     }
-
+   
+    if (t1 === t2) {
+        console.log("Несумісна пара типів. Перечитайте інструкцію.");
+        return "failed";
+    }
     
     if (v1 <= 0 || v2 <= 0) {
         return "Значення повинні бути додатними";
@@ -93,6 +107,10 @@ function triangle(v1, t1, v2, t2) {
         else {
             console.log("Несумісна пара типів. Перечитайте інструкцію.");
             return "failed";
+        }
+
+        if (!triangleInequality(a, b, c)) {
+            return "Некоректні вхідні дані";
         }
 
         console.log("Результат:");
