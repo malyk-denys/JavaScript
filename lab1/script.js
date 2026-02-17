@@ -8,121 +8,131 @@ console.log("angle – гострий кут (коли задана гіпоте
 console.log("Кути задаються у градусах");
 
 function toRad(deg) {
-    return deg * Math.PI / 180;
+  return deg * Math.PI / 180;
 }
 
 function toDeg(rad) {
-    return rad * 180 / Math.PI;
+  return rad * 180 / Math.PI;
 }
 
 function triangleInequality(a, b, c) {
-    return (
-        a > 0 &&
-        b > 0 &&
-        c > 0 &&
-        c < a + b &&
-        c > Math.abs(a - b)
-    );
+  return (
+    a > 0 &&
+    b > 0 &&
+    c > 0 &&
+    c < a + b &&
+    c > Math.abs(a - b)
+  );
 }
 
 function triangle(v1, t1, v2, t2) {
 
-    const validTypes = [
-        "leg",
-        "hypotenuse",
-        "adjacent angle",
-        "opposite angle",
-        "angle"
-    ];
+  const validTypes = [
+    "leg",
+    "hypotenuse",
+    "adjacent angle",
+    "opposite angle",
+    "angle"
+  ];
 
-   if (!validTypes.includes(t1) || !validTypes.includes(t2)) {
+  if (!validTypes.includes(t1) || !validTypes.includes(t2)) {
     console.log("Невірні типи аргументів. Перечитайте інструкцію.");
     return "failed";
-}
-
-if (t1 === t2) {
+  }
+    
+  if (t1 === t2 && t1 !== "leg") {
     console.log("Несумісна пара типів. Перечитайте інструкцію.");
     return "failed";
-}
-    
-    if (v1 <= 0 || v2 <= 0) {
-        return "Значення повинні бути додатними";
+  }
+
+  if (v1 <= 0 || v2 <= 0) {
+    return "Значення повинні бути додатними";
+  }
+
+  const args = {};
+  args[t1] = v1;
+  args[t2] = v2;
+
+  let a, b, c, alpha, beta;
+
+  try {
+
+    if (t1 === "leg" && t2 === "leg") {
+      a = v1;
+      b = v2;
+
+      c = Math.sqrt(a * a + b * b);
+
+      alpha = Math.atan(a / b);
+      beta = Math.atan(b / a);
     }
 
-    const args = {};
-    args[t1] = v1;
-    args[t2] = v2;
+    else if (args["leg"] && args["hypotenuse"]) {
+      a = args["leg"];
+      c = args["hypotenuse"];
 
-    let a, b, c, alpha, beta;
+      if (a >= c) return "Катет не може бути більшим або рівним гіпотенузі";
 
-    try {
-        
-        if (args["leg"] && args["hypotenuse"]) {
-            a = args["leg"];
-            c = args["hypotenuse"];
-
-            if (a >= c) return "Катет не може бути більшим або рівним гіпотенузі";
-
-            b = Math.sqrt(c * c - a * a);
-            alpha = Math.asin(a / c);
-            beta = Math.asin(b / c);
-        }
-
-        else if (args["leg"] && args["opposite angle"]) {
-            a = args["leg"];
-            alpha = toRad(args["opposite angle"]);
-
-            if (alpha <= 0 || alpha >= Math.PI / 2)
-                return "Кут повинен бути гострим";
-
-            c = a / Math.sin(alpha);
-            b = Math.sqrt(c * c - a * a);
-            beta = Math.asin(b / c);
-        }
-
-        else if (args["leg"] && args["adjacent angle"]) {
-            a = args["leg"];
-            beta = toRad(args["adjacent angle"]);
-
-            if (beta <= 0 || beta >= Math.PI / 2)
-                return "Кут повинен бути гострим";
-
-            c = a / Math.cos(beta);
-            b = Math.sqrt(c * c - a * a);
-            alpha = Math.asin(a / c);
-        }
-
-        else if (args["hypotenuse"] && args["angle"]) {
-            c = args["hypotenuse"];
-            alpha = toRad(args["angle"]);
-
-            if (alpha <= 0 || alpha >= Math.PI / 2)
-                return "Кут повинен бути гострим";
-
-            a = c * Math.sin(alpha);
-            b = c * Math.cos(alpha);
-            beta = Math.asin(b / c);
-        }
-
-        else {
-            console.log("Несумісна пара типів. Перечитайте інструкцію.");
-            return "failed";
-        }
-
-        if (!triangleInequality(a, b, c)) {
-            return "Некоректні вхідні дані";
-        }
-
-        console.log("Результат:");
-        console.log("a =", a.toFixed(4));
-        console.log("b =", b.toFixed(4));
-        console.log("c =", c.toFixed(4));
-        console.log("alpha =", toDeg(alpha).toFixed(2), "градусів");
-        console.log("beta =", toDeg(beta).toFixed(2), "градусів");
-
-        return "success";
-
-    } catch (e) {
-        return "Помилка обчислення";
+      b = Math.sqrt(c * c - a * a);
+      alpha = Math.asin(a / c);
+      beta = Math.asin(b / c);
     }
+
+    else if (args["leg"] && args["opposite angle"]) {
+      a = args["leg"];
+      alpha = toRad(args["opposite angle"]);
+
+      if (alpha <= 0 || alpha >= Math.PI / 2)
+        return "Кут повинен бути гострим";
+
+      c = a / Math.sin(alpha);
+      b = Math.sqrt(c * c - a * a);
+      beta = Math.asin(b / c);
+    }
+
+    else if (args["leg"] && args["adjacent angle"]) {
+      a = args["leg"];
+      beta = toRad(args["adjacent angle"]);
+
+      if (beta <= 0 || beta >= Math.PI / 2)
+        return "Кут повинен бути гострим";
+
+      c = a / Math.cos(beta);
+      b = Math.sqrt(c * c - a * a);
+      alpha = Math.asin(a / c);
+    }
+
+    else if (args["hypotenuse"] && args["angle"]) {
+      c = args["hypotenuse"];
+      alpha = toRad(args["angle"]);
+
+      if (alpha <= 0 || alpha >= Math.PI / 2)
+        return "Кут повинен бути гострим";
+
+      a = c * Math.sin(alpha);
+      b = c * Math.cos(alpha);
+      beta = Math.asin(b / c);
+    }
+
+    else {
+      console.log("Несумісна пара типів. Перечитайте інструкцію.");
+      return "failed";
+    }
+
+    if (!triangleInequality(a, b, c)) {
+      return "Некоректні вхідні дані";
+    }
+
+    console.log("Результат:");
+    console.log("a =", a.toFixed(4));
+    console.log("b =", b.toFixed(4));
+    console.log("c =", c.toFixed(4));
+    console.log("alpha =", toDeg(alpha).toFixed(2), "градусів");
+    console.log("beta =", toDeg(beta).toFixed(2), "градусів");
+
+    return "success";
+
+  } catch (e) {
+    return "Помилка обчислення";
+  }
 }
