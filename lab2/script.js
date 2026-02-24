@@ -1,4 +1,3 @@
-"use strict";
 
 // 1.2.3
 const car1 = new Object();
