@@ -279,14 +279,6 @@ rect.info();
 rh.info();
 para.info();
 
-console.log("1.2.22 getters/setters demo (Rhombus):");
-console.log("Before:", rh.sideA, rh.angleAlpha, rh.angleBeta);
-rh.sideA = 10;
-rh.angleAlpha = 110;
-rh.angleBeta = 70;
-console.log("After:", rh.sideA, rh.angleAlpha, rh.angleBeta);
-rh.info();
-
 // 1.2.25
 function Triangular(a = 3, b = 4, c = 5) {
   const [A, B, C] = [a, b, c].map((x) => parseInt(x, 10));
