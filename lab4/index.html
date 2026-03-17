@@ -3,306 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Лабораторна робота №4 — Бібліотека сортування у JavaScript</title>
+  <title>Лабораторна 4</title>
   <style>
-    :root {
-      --bg: #f4f7fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --accent: #1d4ed8;
-      --border: #dbe4f0;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-
-    .header,
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
-    }
-
-    .header p {
-      margin: 8px 0;
-    }
-
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 12px 18px;
-      background: var(--accent);
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-
-    th, td {
-      border: 1px solid var(--border);
-      padding: 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      background: #eef4ff;
-    }
-
-    .array-block {
-      background: #0f172a;
-      color: #e5eefc;
-      padding: 12px;
-      border-radius: 10px;
-      overflow-x: auto;
-      white-space: pre-wrap;
-      font-family: Consolas, monospace;
-      font-size: 13px;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    details {
-      margin-top: 10px;
-      background: #f8fbff;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .footer-note {
-      font-size: 14px;
-      color: var(--muted);
-    }
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .box { border: 1px solid #999; padding: 10px; margin-bottom: 15px; }
+    pre { background: #f3f3f3; padding: 10px; white-space: pre-wrap; overflow-x: auto; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <section class="header">
-      <h1>Лабораторна робота №4</h1>
-      <p><strong>Тема:</strong> Розробка бібліотек у JavaScript</p>
-      <p><strong>Мета:</strong> створити JS-бібліотеку для сортування числових масивів різними методами та продемонструвати її роботу на звичайному й розрідженому масивах.</p>
-      <p class="muted">Бібліотека реалізована у вигляді псевдопростору імен <strong>SortLib</strong>.</p>
+  <h1>Лабораторна робота №4</h1>
+  <p>Демонстрація 5 методів сортування.</p>
 
-      <div class="controls">
-        <button onclick="runAll(true)">Запустити всі методи за зростанням</button>
-        <button onclick="runAll(false)">Запустити всі методи за спаданням</button>
-      </div>
-    </section>
-
-    <div class="grid">
-      <section class="panel" id="densePanel">
-        <h2>1. Нерозріджений масив</h2>
-        <p class="muted">Масив цілих чисел довжиною 120 без undefined-елементів.</p>
-        <div id="denseInput"></div>
-        <div id="denseResults"></div>
-      </section>
-
-      <section class="panel" id="sparsePanel">
-        <h2>2. Розріджений масив</h2>
-        <p class="muted">Масив довжиною 120, у якому частина позицій є порожніми або undefined.</p>
-        <div id="sparseInput"></div>
-        <div id="sparseResults"></div>
-      </section>
-    </div>
-
-    <section class="panel">
-      <h2>Пояснення реалізації</h2>
-      <ul>
-        <li>Усі методи працюють з одним і тим самим вхідним масивом, оскільки перед сортуванням створюється копія.</li>
-        <li>Параметр <strong>ascending</strong> визначає напрям сортування: <strong>true</strong> — за зростанням, <strong>false</strong> — за спаданням.</li>
-        <li>Якщо в масиві є undefined або «дірки» sparse-масиву, сортується лише числова частина, а невизначені елементи переносяться в кінець результату.</li>
-        <li>Для кожного методу виводиться кількість порівнянь та обмінів/переміщень.</li>
-      </ul>
-      <p class="footer-note">Відкрий консоль браузера (F12), щоб побачити журнали роботи кожного алгоритму.</p>
-    </section>
-  </div>
+  <div id="output"></div>
 
   <script src="sortlib.js"></script>
   <script>
-    function makeDenseArray() {
-      return Array.from({ length: 120 }, (_, i) => ((i * 37 + 13) % 241) - 120);
-    }
+    const normalArray = Array.from({ length: 120 }, (_, i) => (i * 13 + 7) % 100);
 
-    function makeSparseArray() {
-      const arr = makeDenseArray().slice();
-
-      delete arr[4];
-      delete arr[11];
-      delete arr[23];
-      delete arr[37];
-      delete arr[58];
-      delete arr[84];
-      delete arr[101];
-
-      arr[7] = undefined;
-      arr[19] = undefined;
-      arr[42] = undefined;
-      arr[67] = undefined;
-      arr[95] = undefined;
-
-      return arr;
-    }
-
-    function arrayToVisibleString(arr) {
-      let parts = [];
-      for (let i = 0; i < arr.length; i++) {
-        if (!(i in arr)) {
-          parts.push('<empty>');
-        } else if (arr[i] === undefined) {
-          parts.push('undefined');
-        } else {
-          parts.push(String(arr[i]));
-        }
-      }
-      return '[' + parts.join(', ') + ']';
-    }
-
-    function resultPreview(arr, limit = 30) {
-      const preview = [];
-      for (let i = 0; i < Math.min(arr.length, limit); i++) {
-        if (!(i in arr)) {
-          preview.push('<empty>');
-        } else if (arr[i] === undefined) {
-          preview.push('undefined');
-        } else {
-          preview.push(String(arr[i]));
-        }
-      }
-      return preview.join(', ');
-    }
+    const sparseArray = normalArray.slice();
+    delete sparseArray[5];
+    delete sparseArray[20];
+    sparseArray[45] = undefined;
+    delete sparseArray[75];
+    sparseArray[100] = undefined;
 
     const methods = [
-      { key: 'exchangeSort', title: 'Обміну' },
-      { key: 'selectionSort', title: 'Мінімальних елементів' },
-      { key: 'insertionSort', title: 'Вставок' },
-      { key: 'shellSort', title: 'Шелла' },
-      { key: 'quickSort', title: 'Хоара (швидке)' }
+      ["Сортування обміну", SortLib.exchangeSort],
+      ["Сортування мінімальних елементів", SortLib.selectionSort],
+      ["Сортування вставками", SortLib.insertionSort],
+      ["Сортування Шелла", SortLib.shellSort],
+      ["Сортування Хоара", SortLib.quickSort]
     ];
 
-    function renderInput(targetId, title, arr) {
-      document.getElementById(targetId).innerHTML = `
-        <h3>${title}</h3>
-        <div class="array-block">${arrayToVisibleString(arr)}</div>
-      `;
+    function arrayToText(arr) {
+      const out = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (!(i in arr)) out.push("<empty>");
+        else if (arr[i] === undefined) out.push("undefined");
+        else out.push(arr[i]);
+      }
+      return out.join(", ");
     }
 
-    function runGroup(sourceArray, containerId, ascending) {
-      const orderLabel = ascending ? 'за зростанням' : 'за спаданням';
-      let html = `<h3>Результати сортування ${orderLabel}</h3>`;
-      html += '<table>';
-      html += `
-        <tr>
-          <th>Метод</th>
-          <th>Порівняння</th>
-          <th>Обміни / переміщення</th>
-          <th>Undefined / порожні</th>
-          <th>Початок результату</th>
-        </tr>
-      `;
+    function showBlock(title, arr) {
+      const output = document.getElementById("output");
+      const block = document.createElement("div");
+      block.className = "box";
+      block.innerHTML = `<h2>${title}</h2><pre>${arrayToText(arr)}</pre>`;
 
-      const details = [];
+      for (let i = 0; i < methods.length; i++) {
+        const name = methods[i][0];
+        const fn = methods[i][1];
 
-      methods.forEach((method, index) => {
-        const stats = SortLib[method.key](sourceArray, ascending);
+        const up = fn(arr, true);
+        const down = fn(arr, false);
 
-        html += `
-          <tr>
-            <td>${method.title}</td>
-            <td>${stats.comparisons}</td>
-            <td>${stats.movements}</td>
-            <td>${stats.undefinedElements}</td>
-            <td>${resultPreview(stats.result)}</td>
-          </tr>
+        const item = document.createElement("div");
+        item.className = "box";
+        item.innerHTML = `
+          <h3>${name}</h3>
+          <p><b>За зростанням:</b> порівнянь = ${up.comparisons}, переміщень = ${up.moves}</p>
+          <p>${up.message}</p>
+          <pre>${arrayToText(up.result)}</pre>
+          <p><b>За спаданням:</b> порівнянь = ${down.comparisons}, переміщень = ${down.moves}</p>
+          <p>${down.message}</p>
+          <pre>${arrayToText(down.result)}</pre>
         `;
+        block.appendChild(item);
+      }
 
-        details.push(`
-          <details ${index === 0 ? 'open' : ''}>
-            <summary>${method.title} — повний результат</summary>
-            <p><strong>Метод:</strong> ${stats.method}</p>
-            <p><strong>Порядок:</strong> ${stats.order}</p>
-            <p><strong>Порівнянь:</strong> ${stats.comparisons}</p>
-            <p><strong>Обмінів / переміщень:</strong> ${stats.movements}</p>
-            <p><strong>Undefined / порожніх позицій:</strong> ${stats.undefinedElements}</p>
-            <div class="array-block">${arrayToVisibleString(stats.result)}</div>
-          </details>
-        `);
-      });
-
-      html += '</table>';
-      html += details.join('');
-      document.getElementById(containerId).innerHTML = html;
+      output.appendChild(block);
     }
 
-    function runAll(ascending) {
-      const dense = makeDenseArray();
-      const sparse = makeSparseArray();
-
-      renderInput('denseInput', 'Вхідний нерозріджений масив', dense);
-      renderInput('sparseInput', 'Вхідний розріджений масив', sparse);
-
-      runGroup(dense, 'denseResults', ascending);
-      runGroup(sparse, 'sparseResults', ascending);
-    }
-
-    runAll(true);
+    showBlock("Звичайний масив (120 елементів)", normalArray);
+    showBlock("Розріджений масив (120 елементів)", sparseArray);
   </script>
 </body>
 </html>
