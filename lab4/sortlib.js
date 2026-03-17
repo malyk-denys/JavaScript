@@ -1,145 +1,57 @@
-(function (global) {
-  'use strict';
-
-  const SortLib = {};
-
-  function validateArray(arr) {
-    if (!Array.isArray(arr)) {
-      throw new TypeError('Очікується масив JavaScript.');
-    }
-  }
-
-  function prepareArray(arr) {
-    validateArray(arr);
-
-    const definedValues = [];
-    let undefinedCount = 0;
-    let sparseHoles = 0;
-
-    for (let i = 0; i < arr.length; i++) {
-      if (!(i in arr)) {
-        undefinedCount++;
-        sparseHoles++;
-        continue;
-      }
-
-      const value = arr[i];
-
-      if (value === undefined) {
-        undefinedCount++;
-        continue;
-      }
-
-      if (typeof value !== 'number' || Number.isNaN(value)) {
-        throw new TypeError('Усі визначені елементи масиву повинні бути числами.');
-      }
-
-      definedValues.push(value);
-    }
-
-    return {
-      definedValues,
-      undefinedCount,
-      sparseHoles,
-      originalLength: arr.length
-    };
-  }
-
-  function buildResultArray(sortedDefined, undefinedCount) {
-    const result = new Array(sortedDefined.length + undefinedCount);
-    for (let i = 0; i < sortedDefined.length; i++) {
-      result[i] = sortedDefined[i];
-    }
-    return result;
-  }
-
-  function formatStats(method, ascending, prepared, comparisons, movements, resultArray) {
-    const stats = {
-      method,
-      order: ascending ? 'ASC' : 'DESC',
-      comparisons,
-      movements,
-      originalLength: prepared.originalLength,
-      definedElements: prepared.definedValues.length,
-      undefinedElements: prepared.undefinedCount,
-      sparseHoles: prepared.sparseHoles,
-      result: resultArray
-    };
-
-    console.log('----------------------------------------');
-    console.log(`Метод: ${stats.method}`);
-    console.log(`Порядок: ${stats.order}`);
-    console.log(`Порівнянь: ${stats.comparisons}`);
-    console.log(`Обмінів / переміщень: ${stats.movements}`);
-
-    if (prepared.undefinedCount > 0) {
-      console.log(
-        `Виявлено ${prepared.undefinedCount} undefined/порожніх позицій ` +
-        `(дірки sparse-масиву: ${prepared.sparseHoles}). ` +
-        'Під час сортування числова частина була впорядкована, ' +
-        'а undefined-елементи перенесені в кінець результату.'
-      );
-    } else {
-      console.log('Undefined-елементи відсутні.');
-    }
-
-    return stats;
-  }
-
-  function shouldSwap(left, right, ascending) {
-    return ascending ? left > right : left < right;
-  }
-
-  function bubbleCore(values, ascending) {
-    const a = values.slice();
+const SortLib = {
+  exchangeSort(arr, ascending = true) {
+    const data = splitArray(arr);
+    const a = data.numbers.slice();
     let comparisons = 0;
-    let movements = 0;
+    let moves = 0;
 
     for (let i = 0; i < a.length - 1; i++) {
-      let swapped = false;
       for (let j = 0; j < a.length - 1 - i; j++) {
         comparisons++;
-        if (shouldSwap(a[j], a[j + 1], ascending)) {
-          [a[j], a[j + 1]] = [a[j + 1], a[j]];
-          movements++;
-          swapped = true;
+        if ((ascending && a[j] > a[j + 1]) || (!ascending && a[j] < a[j + 1])) {
+          const temp = a[j];
+          a[j] = a[j + 1];
+          a[j + 1] = temp;
+          moves++;
         }
-      }
-      if (!swapped) {
-        break;
       }
     }
 
-    return { sorted: a, comparisons, movements };
-  }
+    return makeAnswer("Сортування обміну", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+  },
 
-  function selectionCore(values, ascending) {
-    const a = values.slice();
+  selectionSort(arr, ascending = true) {
+    const data = splitArray(arr);
+    const a = data.numbers.slice();
     let comparisons = 0;
-    let movements = 0;
+    let moves = 0;
 
     for (let i = 0; i < a.length - 1; i++) {
-      let targetIndex = i;
+      let best = i;
+
       for (let j = i + 1; j < a.length; j++) {
         comparisons++;
-        const better = ascending ? a[j] < a[targetIndex] : a[j] > a[targetIndex];
-        if (better) {
-          targetIndex = j;
+        if ((ascending && a[j] < a[best]) || (!ascending && a[j] > a[best])) {
+          best = j;
         }
       }
-      if (targetIndex !== i) {
-        [a[i], a[targetIndex]] = [a[targetIndex], a[i]];
-        movements++;
+
+      if (best !== i) {
+        const temp = a[i];
+        a[i] = a[best];
+        a[best] = temp;
+        moves++;
       }
     }
 
-    return { sorted: a, comparisons, movements };
-  }
+    return makeAnswer("Сортування мінімальних елементів", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+  },
 
-  function insertionCore(values, ascending) {
-    const a = values.slice();
+  insertionSort(arr, ascending = true) {
+    const data = splitArray(arr);
+    const a = data.numbers.slice();
     let comparisons = 0;
-    let movements = 0;
+    let moves = 0;
 
     for (let i = 1; i < a.length; i++) {
       const key = a[i];
@@ -147,26 +59,27 @@
 
       while (j >= 0) {
         comparisons++;
-        const mustMove = ascending ? a[j] > key : a[j] < key;
-        if (!mustMove) {
+        if ((ascending && a[j] > key) || (!ascending && a[j] < key)) {
+          a[j + 1] = a[j];
+          moves++;
+          j--;
+        } else {
           break;
         }
-        a[j + 1] = a[j];
-        movements++;
-        j--;
       }
 
       a[j + 1] = key;
-      movements++;
+      moves++;
     }
 
-    return { sorted: a, comparisons, movements };
-  }
+    return makeAnswer("Сортування вставками", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+  },
 
-  function shellCore(values, ascending) {
-    const a = values.slice();
+  shellSort(arr, ascending = true) {
+    const data = splitArray(arr);
+    const a = data.numbers.slice();
     let comparisons = 0;
-    let movements = 0;
+    let moves = 0;
 
     for (let gap = Math.floor(a.length / 2); gap > 0; gap = Math.floor(gap / 2)) {
       for (let i = gap; i < a.length; i++) {
@@ -175,102 +88,115 @@
 
         while (j >= gap) {
           comparisons++;
-          const mustMove = ascending ? a[j - gap] > temp : a[j - gap] < temp;
-          if (!mustMove) {
+          if ((ascending && a[j - gap] > temp) || (!ascending && a[j - gap] < temp)) {
+            a[j] = a[j - gap];
+            moves++;
+            j -= gap;
+          } else {
             break;
           }
-          a[j] = a[j - gap];
-          movements++;
-          j -= gap;
         }
 
         a[j] = temp;
-        movements++;
+        moves++;
       }
     }
 
-    return { sorted: a, comparisons, movements };
-  }
+    return makeAnswer("Сортування Шелла", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+  },
 
-  function quickCore(values, ascending) {
-    const a = values.slice();
+  quickSort(arr, ascending = true) {
+    const data = splitArray(arr);
+    const a = data.numbers.slice();
     let comparisons = 0;
-    let movements = 0;
+    let moves = 0;
 
-    function compareForLeft(value, pivot) {
-      comparisons++;
-      return ascending ? value < pivot : value > pivot;
-    }
+    function quick(left, right) {
+      let i = left;
+      let j = right;
+      const middle = a[Math.floor((left + right) / 2)];
 
-    function compareForRight(value, pivot) {
-      comparisons++;
-      return ascending ? value > pivot : value < pivot;
-    }
-
-    function hoarePartition(left, right) {
-      const pivot = a[Math.floor((left + right) / 2)];
-      let i = left - 1;
-      let j = right + 1;
-
-      while (true) {
-        do {
-          i++;
-        } while (compareForLeft(a[i], pivot));
-
-        do {
-          j--;
-        } while (compareForRight(a[j], pivot));
-
-        if (i >= j) {
-          return j;
+      while (i <= j) {
+        while (true) {
+          comparisons++;
+          if ((ascending && a[i] < middle) || (!ascending && a[i] > middle)) {
+            i++;
+          } else {
+            break;
+          }
         }
 
-        [a[i], a[j]] = [a[j], a[i]];
-        movements++;
-      }
-    }
+        while (true) {
+          comparisons++;
+          if ((ascending && a[j] > middle) || (!ascending && a[j] < middle)) {
+            j--;
+          } else {
+            break;
+          }
+        }
 
-    function quickSort(left, right) {
-      if (left < right) {
-        const p = hoarePartition(left, right);
-        quickSort(left, p);
-        quickSort(p + 1, right);
+        if (i <= j) {
+          const temp = a[i];
+          a[i] = a[j];
+          a[j] = temp;
+          if (i !== j) moves++;
+          i++;
+          j--;
+        }
       }
+
+      if (left < j) quick(left, j);
+      if (i < right) quick(i, right);
     }
 
     if (a.length > 1) {
-      quickSort(0, a.length - 1);
+      quick(0, a.length - 1);
     }
 
-    return { sorted: a, comparisons, movements };
+    return makeAnswer("Сортування Хоара", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+  }
+};
+
+function splitArray(arr) {
+  if (!Array.isArray(arr)) {
+    throw new Error("Треба передати масив");
   }
 
-  function sortTemplate(methodName, coreSorter, arr, ascending = true) {
-    const prepared = prepareArray(arr);
-    const result = coreSorter(prepared.definedValues, ascending);
-    const finalArray = buildResultArray(result.sorted, prepared.undefinedCount);
-    return formatStats(methodName, ascending, prepared, result.comparisons, result.movements, finalArray);
+  const numbers = [];
+  let undefinedCount = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!(i in arr) || arr[i] === undefined) {
+      undefinedCount++;
+    } else {
+      if (typeof arr[i] !== "number" || Number.isNaN(arr[i])) {
+        throw new Error("У масиві повинні бути тільки числа або undefined");
+      }
+      numbers.push(arr[i]);
+    }
   }
 
-  SortLib.exchangeSort = function (arr, ascending = true) {
-    return sortTemplate('Сортування обміну', bubbleCore, arr, ascending);
-  };
+  return { numbers, undefinedCount };
+}
 
-  SortLib.selectionSort = function (arr, ascending = true) {
-    return sortTemplate('Сортування мінімальних елементів', selectionCore, arr, ascending);
-  };
+function makeAnswer(method, ascending, sortedNumbers, fullLength, undefinedCount, comparisons, moves) {
+  const result = sortedNumbers.slice();
 
-  SortLib.insertionSort = function (arr, ascending = true) {
-    return sortTemplate('Сортування вставками', insertionCore, arr, ascending);
-  };
+  while (result.length < fullLength) {
+    result.push(undefined);
+  }
 
-  SortLib.shellSort = function (arr, ascending = true) {
-    return sortTemplate('Сортування Шелла', shellCore, arr, ascending);
+  return {
+    method: method,
+    direction: ascending ? "за зростанням" : "за спаданням",
+    comparisons: comparisons,
+    moves: moves,
+    undefinedCount: undefinedCount,
+    message: undefinedCount > 0
+      ? "undefined або порожні елементи перенесено в кінець масиву"
+      : "undefined елементів немає",
+    result: result
   };
+}
 
-  SortLib.quickSort = function (arr, ascending = true) {
-    return sortTemplate('Швидке сортування Хоара', quickCore, arr, ascending);
-  };
-
-  global.SortLib = SortLib;
-})(typeof window !== 'undefined' ? window : globalThis);
+window.SortLib = SortLib;
