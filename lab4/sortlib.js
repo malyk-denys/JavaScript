@@ -1,6 +1,6 @@
 const SortLib = {
   exchangeSort(arr, ascending = true) {
-    const data = splitArray(arr);
+    const data = prepareArray(arr);
     const a = data.numbers.slice();
     let comparisons = 0;
     let moves = 0;
@@ -17,11 +17,11 @@ const SortLib = {
       }
     }
 
-    return makeAnswer("Сортування обміну", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+    return makeResult("Сортування обміну", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
   },
 
   selectionSort(arr, ascending = true) {
-    const data = splitArray(arr);
+    const data = prepareArray(arr);
     const a = data.numbers.slice();
     let comparisons = 0;
     let moves = 0;
@@ -44,11 +44,11 @@ const SortLib = {
       }
     }
 
-    return makeAnswer("Сортування мінімальних елементів", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+    return makeResult("Сортування мінімальних елементів", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
   },
 
   insertionSort(arr, ascending = true) {
-    const data = splitArray(arr);
+    const data = prepareArray(arr);
     const a = data.numbers.slice();
     let comparisons = 0;
     let moves = 0;
@@ -72,11 +72,11 @@ const SortLib = {
       moves++;
     }
 
-    return makeAnswer("Сортування вставками", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+    return makeResult("Сортування вставками", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
   },
 
   shellSort(arr, ascending = true) {
-    const data = splitArray(arr);
+    const data = prepareArray(arr);
     const a = data.numbers.slice();
     let comparisons = 0;
     let moves = 0;
@@ -102,11 +102,11 @@ const SortLib = {
       }
     }
 
-    return makeAnswer("Сортування Шелла", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+    return makeResult("Сортування Шелла", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
   },
 
   quickSort(arr, ascending = true) {
-    const data = splitArray(arr);
+    const data = prepareArray(arr);
     const a = data.numbers.slice();
     let comparisons = 0;
     let moves = 0;
@@ -153,13 +153,13 @@ const SortLib = {
       quick(0, a.length - 1);
     }
 
-    return makeAnswer("Сортування Хоара", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
+    return makeResult("Сортування Хоара", ascending, a, arr.length, data.undefinedCount, comparisons, moves);
   }
 };
 
-function splitArray(arr) {
+function prepareArray(arr) {
   if (!Array.isArray(arr)) {
-    throw new Error("Треба передати масив");
+    throw new Error("Потрібно передати масив");
   }
 
   const numbers = [];
@@ -170,7 +170,7 @@ function splitArray(arr) {
       undefinedCount++;
     } else {
       if (typeof arr[i] !== "number" || Number.isNaN(arr[i])) {
-        throw new Error("У масиві повинні бути тільки числа або undefined");
+        throw new Error("Масив повинен містити тільки числа або undefined");
       }
       numbers.push(arr[i]);
     }
@@ -179,7 +179,7 @@ function splitArray(arr) {
   return { numbers, undefinedCount };
 }
 
-function makeAnswer(method, ascending, sortedNumbers, fullLength, undefinedCount, comparisons, moves) {
+function makeResult(method, ascending, sortedNumbers, fullLength, undefinedCount, comparisons, moves) {
   const result = sortedNumbers.slice();
 
   while (result.length < fullLength) {
