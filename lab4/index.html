@@ -2,20 +2,9 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Лабораторна 4</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .box { border: 1px solid #999; padding: 10px; margin-bottom: 15px; }
-    pre { background: #f3f3f3; padding: 10px; white-space: pre-wrap; overflow-x: auto; }
-  </style>
 </head>
 <body>
-  <h1>Лабораторна робота №4</h1>
-  <p>Демонстрація 5 методів сортування.</p>
-
-  <div id="output"></div>
-
   <script src="sortlib.js"></script>
   <script>
     const normalArray = Array.from({ length: 120 }, (_, i) => (i * 13 + 7) % 100);
@@ -28,55 +17,42 @@
     sparseArray[100] = undefined;
 
     const methods = [
-      ["Сортування обміну", SortLib.exchangeSort],
-      ["Сортування мінімальних елементів", SortLib.selectionSort],
-      ["Сортування вставками", SortLib.insertionSort],
-      ["Сортування Шелла", SortLib.shellSort],
-      ["Сортування Хоара", SortLib.quickSort]
+      SortLib.exchangeSort,
+      SortLib.selectionSort,
+      SortLib.insertionSort,
+      SortLib.shellSort,
+      SortLib.quickSort
     ];
 
-    function arrayToText(arr) {
-      const out = [];
-      for (let i = 0; i < arr.length; i++) {
-        if (!(i in arr)) out.push("<empty>");
-        else if (arr[i] === undefined) out.push("undefined");
-        else out.push(arr[i]);
-      }
-      return out.join(", ");
-    }
-
-    function showBlock(title, arr) {
-      const output = document.getElementById("output");
-      const block = document.createElement("div");
-      block.className = "box";
-      block.innerHTML = `<h2>${title}</h2><pre>${arrayToText(arr)}</pre>`;
+    function showInConsole(title, arr) {
+      console.log("====================================");
+      console.log(title);
+      console.log("Початковий масив:");
+      console.log(arr);
 
       for (let i = 0; i < methods.length; i++) {
-        const name = methods[i][0];
-        const fn = methods[i][1];
+        const up = methods[i](arr, true);
+        const down = methods[i](arr, false);
 
-        const up = fn(arr, true);
-        const down = fn(arr, false);
+        console.log("------------------------------------");
+        console.log(up.method);
 
-        const item = document.createElement("div");
-        item.className = "box";
-        item.innerHTML = `
-          <h3>${name}</h3>
-          <p><b>За зростанням:</b> порівнянь = ${up.comparisons}, переміщень = ${up.moves}</p>
-          <p>${up.message}</p>
-          <pre>${arrayToText(up.result)}</pre>
-          <p><b>За спаданням:</b> порівнянь = ${down.comparisons}, переміщень = ${down.moves}</p>
-          <p>${down.message}</p>
-          <pre>${arrayToText(down.result)}</pre>
-        `;
-        block.appendChild(item);
+        console.log("За зростанням:");
+        console.log("Порівнянь:", up.comparisons);
+        console.log("Переміщень:", up.moves);
+        console.log(up.message);
+        console.log(up.result);
+
+        console.log("За спаданням:");
+        console.log("Порівнянь:", down.comparisons);
+        console.log("Переміщень:", down.moves);
+        console.log(down.message);
+        console.log(down.result);
       }
-
-      output.appendChild(block);
     }
 
-    showBlock("Звичайний масив (120 елементів)", normalArray);
-    showBlock("Розріджений масив (120 елементів)", sparseArray);
+    showInConsole("Звичайний масив (120 елементів)", normalArray);
+    showInConsole("Розріджений масив (120 елементів)", sparseArray);
   </script>
 </body>
 </html>
