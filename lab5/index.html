@@ -38,12 +38,27 @@
       </div>
 
       <div class="control-group hidden" id="imageBlock">
-        <label for="pixelImageSelect">Оберіть картинку:</label>
-        <select id="pixelImageSelect">
-          <option value="images/pic1.jpg">Картинка 1</option>
-          <option value="images/pic2.jpg">Картинка 2</option>
-          <option value="images/pic3.jpg">Картинка 3</option>
-        </select>
+        <span>Оберіть картинку:</span>
+
+        <div class="image-choices">
+          <label class="image-card">
+            <input type="radio" name="pixelImage" value="images/pic1.jpg" checked />
+            <img src="images/pic1.jpg" alt="Картинка 1" />
+            <span>Картинка 1</span>
+          </label>
+
+          <label class="image-card">
+            <input type="radio" name="pixelImage" value="images/pic2.jpg" />
+            <img src="images/pic2.jpg" alt="Картинка 2" />
+            <span>Картинка 2</span>
+          </label>
+
+          <label class="image-card">
+            <input type="radio" name="pixelImage" value="images/pic3.jpg" />
+            <img src="images/pic3.jpg" alt="Картинка 3" />
+            <span>Картинка 3</span>
+          </label>
+        </div>
       </div>
 
       <div class="buttons">
