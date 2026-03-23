@@ -16,15 +16,15 @@ const modeRadios = document.querySelectorAll('input[name="mode"]');
 
 const settings = {
   easy: {
-    time: 30,
+    clickTime: 3,
     size: 60
   },
   medium: {
-    time: 20,
+    clickTime: 2,
     size: 35
   },
   hard: {
-    time: 10,
+    clickTime: 1,
     size: 20
   }
 };
@@ -35,6 +35,8 @@ let timerId = null;
 let pixel = null;
 let gameActive = false;
 let currentImageURL = null;
+let currentSize = 0;
+let currentClickTime = 0;
 
 function getSelectedMode() {
   return document.querySelector('input[name="mode"]:checked').value;
@@ -111,7 +113,8 @@ function createPixel(size) {
     score++;
     scoreSpan.textContent = score;
 
-    movePixel(size);
+    movePixel(currentSize);
+    restartSmallTimer();
   });
 
   gameArea.appendChild(pixel);
@@ -144,7 +147,12 @@ function endGame() {
   setMessage(`Час вийшов. Гру завершено. Ваш результат: ${score}`);
 }
 
-function startTimer() {
+function restartSmallTimer() {
+  clearInterval(timerId);
+
+  timeLeft = currentClickTime;
+  timeSpan.textContent = timeLeft;
+
   timerId = setInterval(function () {
     timeLeft--;
     timeSpan.textContent = timeLeft;
@@ -161,24 +169,25 @@ function startGame() {
   const difficulty = difficultySelect.value;
   const level = settings[difficulty];
 
+  currentClickTime = level.clickTime;
+  currentSize = level.size;
+
   score = 0;
-  timeLeft = level.time;
-
   scoreSpan.textContent = score;
-  timeSpan.textContent = timeLeft;
+  timeSpan.textContent = currentClickTime;
 
-  const created = createPixel(level.size);
+  const created = createPixel(currentSize);
+
   if (!created) {
     timeSpan.textContent = 0;
     return;
   }
 
-  movePixel(level.size);
-
+  movePixel(currentSize);
   gameActive = true;
-  setMessage("Гра розпочалась. Натискайте на піксель.");
 
-  startTimer();
+  setMessage("Гра розпочалась. Натискай на піксель до завершення таймера.");
+  restartSmallTimer();
 }
 
 modeRadios.forEach(function (radio) {
