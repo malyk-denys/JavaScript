@@ -5,7 +5,6 @@ const colorBlock = document.getElementById("colorBlock");
 const imageBlock = document.getElementById("imageBlock");
 
 const colorInput = document.getElementById("pixelColor");
-const imageSelect = document.getElementById("pixelImageSelect");
 
 const timeSpan = document.getElementById("time");
 const scoreSpan = document.getElementById("score");
@@ -39,6 +38,11 @@ let currentClickTime = 0;
 
 function getSelectedMode() {
   return document.querySelector('input[name="mode"]:checked').value;
+}
+
+function getSelectedImage() {
+  const selected = document.querySelector('input[name="pixelImage"]:checked');
+  return selected ? selected.value : null;
 }
 
 function updateModeBlocks() {
@@ -81,13 +85,18 @@ function createPixel(size) {
     pixel.style.backgroundColor = colorInput.value;
     pixel.style.backgroundImage = "none";
   } else {
-    const selectedImage = imageSelect.value;
+    const selectedImage = getSelectedImage();
+
+    if (!selectedImage) {
+      setMessage("Оберіть картинку.");
+      return false;
+    }
 
     pixel.style.backgroundImage = `url("${selectedImage}")`;
     pixel.style.backgroundSize = "cover";
     pixel.style.backgroundPosition = "center";
     pixel.style.backgroundRepeat = "no-repeat";
-    pixel.style.backgroundColor = "transparent";
+    pixel.style.backgroundColor = "#ddd";
   }
 
   pixel.addEventListener("click", function () {
@@ -146,6 +155,20 @@ function restartSmallTimer() {
   }, 1000);
 }
 
+function validateSelectedImage(imagePath, onSuccess) {
+  const testImage = new Image();
+
+  testImage.onload = function () {
+    onSuccess();
+  };
+
+  testImage.onerror = function () {
+    setMessage("Не вдалося завантажити картинку. Перевір папку images і назву файлу.");
+  };
+
+  testImage.src = imagePath;
+}
+
 function startGame() {
   resetGameState();
 
@@ -159,12 +182,35 @@ function startGame() {
   scoreSpan.textContent = score;
   timeSpan.textContent = currentClickTime;
 
-  createPixel(currentSize);
-  movePixel(currentSize);
+  const mode = getSelectedMode();
 
+  if (mode === "image") {
+    const selectedImage = getSelectedImage();
+
+    if (!selectedImage) {
+      setMessage("Оберіть картинку перед стартом.");
+      return;
+    }
+
+    validateSelectedImage(selectedImage, function () {
+      const created = createPixel(currentSize);
+      if (!created) return;
+
+      movePixel(currentSize);
+      gameActive = true;
+      setMessage("Гра розпочалась. Натискай на піксель до завершення таймера.");
+      restartSmallTimer();
+    });
+
+    return;
+  }
+
+  const created = createPixel(currentSize);
+  if (!created) return;
+
+  movePixel(currentSize);
   gameActive = true;
   setMessage("Гра розпочалась. Натискай на піксель до завершення таймера.");
-
   restartSmallTimer();
 }
 
