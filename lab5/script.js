@@ -3,7 +3,6 @@ const startBtn = document.getElementById("startBtn");
 
 const colorBlock = document.getElementById("colorBlock");
 const imageBlock = document.getElementById("imageBlock");
-
 const colorInput = document.getElementById("pixelColor");
 
 const timeSpan = document.getElementById("time");
@@ -14,18 +13,9 @@ const gameArea = document.getElementById("gameArea");
 const modeRadios = document.querySelectorAll('input[name="mode"]');
 
 const settings = {
-  easy: {
-    clickTime: 3,
-    size: 60
-  },
-  medium: {
-    clickTime: 2,
-    size: 35
-  },
-  hard: {
-    clickTime: 1,
-    size: 20
-  }
+  easy: { clickTime: 3, size: 60 },
+  medium: { clickTime: 2, size: 35 },
+  hard: { clickTime: 1, size: 20 }
 };
 
 let score = 0;
@@ -42,7 +32,7 @@ function getSelectedMode() {
 
 function getSelectedImage() {
   const selected = document.querySelector('input[name="pixelImage"]:checked');
-  return selected ? selected.value : null;
+  return selected ? selected.value : "";
 }
 
 function updateModeBlocks() {
@@ -57,20 +47,19 @@ function updateModeBlocks() {
   }
 }
 
-function resetGameArea() {
-  gameArea.innerHTML = "";
-  pixel = null;
+function setMessage(text) {
+  message.textContent = text;
 }
 
-function resetGameState() {
+function resetGame() {
   clearInterval(timerId);
   timerId = null;
   gameActive = false;
-  resetGameArea();
-}
 
-function setMessage(text) {
-  message.textContent = text;
+  if (pixel) {
+    pixel.remove();
+    pixel = null;
+  }
 }
 
 function createPixel(size) {
@@ -92,10 +81,7 @@ function createPixel(size) {
       return false;
     }
 
-    pixel.style.backgroundImage = `url("${selectedImage}")`;
-    pixel.style.backgroundSize = "cover";
-    pixel.style.backgroundPosition = "center";
-    pixel.style.backgroundRepeat = "no-repeat";
+    pixel.style.backgroundImage = `url(${selectedImage})`;
     pixel.style.backgroundColor = "#ddd";
   }
 
@@ -105,7 +91,7 @@ function createPixel(size) {
     score++;
     scoreSpan.textContent = score;
 
-    movePixel(currentSize);
+    movePixel();
     restartSmallTimer();
   });
 
@@ -113,17 +99,24 @@ function createPixel(size) {
   return true;
 }
 
-function movePixel(size) {
+function movePixel() {
   if (!pixel) return;
 
-  const maxX = gameArea.clientWidth - size;
-  const maxY = gameArea.clientHeight - size;
+  const areaWidth = gameArea.clientWidth;
+  const areaHeight = gameArea.clientHeight;
+  const pixelWidth = pixel.offsetWidth;
+  const pixelHeight = pixel.offsetHeight;
 
-  const randomX = Math.floor(Math.random() * (maxX + 1));
-  const randomY = Math.floor(Math.random() * (maxY + 1));
+  const maxX = areaWidth - pixelWidth;
+  const maxY = areaHeight - pixelHeight;
 
-  pixel.style.left = randomX + "px";
-  pixel.style.top = randomY + "px";
+  if (maxX < 0 || maxY < 0) return;
+
+  const x = Math.floor(Math.random() * (maxX + 1));
+  const y = Math.floor(Math.random() * (maxY + 1));
+
+  pixel.style.left = x + "px";
+  pixel.style.top = y + "px";
 }
 
 function endGame() {
@@ -155,22 +148,8 @@ function restartSmallTimer() {
   }, 1000);
 }
 
-function validateSelectedImage(imagePath, onSuccess) {
-  const testImage = new Image();
-
-  testImage.onload = function () {
-    onSuccess();
-  };
-
-  testImage.onerror = function () {
-    setMessage("Не вдалося завантажити картинку. Перевір папку images і назву файлу.");
-  };
-
-  testImage.src = imagePath;
-}
-
 function startGame() {
-  resetGameState();
+  resetGame();
 
   const difficulty = difficultySelect.value;
   const level = settings[difficulty];
@@ -182,35 +161,13 @@ function startGame() {
   scoreSpan.textContent = score;
   timeSpan.textContent = currentClickTime;
 
-  const mode = getSelectedMode();
-
-  if (mode === "image") {
-    const selectedImage = getSelectedImage();
-
-    if (!selectedImage) {
-      setMessage("Оберіть картинку перед стартом.");
-      return;
-    }
-
-    validateSelectedImage(selectedImage, function () {
-      const created = createPixel(currentSize);
-      if (!created) return;
-
-      movePixel(currentSize);
-      gameActive = true;
-      setMessage("Гра розпочалась. Натискай на піксель до завершення таймера.");
-      restartSmallTimer();
-    });
-
-    return;
-  }
-
   const created = createPixel(currentSize);
   if (!created) return;
 
-  movePixel(currentSize);
   gameActive = true;
   setMessage("Гра розпочалась. Натискай на піксель до завершення таймера.");
+
+  movePixel();
   restartSmallTimer();
 }
 
