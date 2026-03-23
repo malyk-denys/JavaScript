@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Hunt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Pixel Hunt</h1>
 
+    <div class="controls">
+      <div class="control-group">
+        <label for="difficulty">Рівень складності:</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <span>Режим пікселя:</span>
+        <label>
+          <input type="radio" name="mode" value="color" checked />
+          Колір
+        </label>
+        <label>
+          <input type="radio" name="mode" value="image" />
+          Картинка
+        </label>
+      </div>
+
+      <div class="control-group" id="colorBlock">
+        <label for="pixelColor">Оберіть колір:</label>
+        <input type="color" id="pixelColor" value="#ff3b30" />
+      </div>
+
+      <div class="control-group hidden" id="imageBlock">
+        <label for="pixelImage">Оберіть картинку:</label>
+        <input type="file" id="pixelImage" accept="image/*" />
+      </div>
+
+      <div class="buttons">
+        <button id="startBtn">Start</button>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <div class="info-box">Час: <span id="time">0</span></div>
+      <div class="info-box">Рахунок: <span id="score">0</span></div>
+    </div>
+
+    <p id="message" class="message">Оберіть параметри та натисніть Start</p>
+
+    <div id="gameArea"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
