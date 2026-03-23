@@ -1,139 +1,20 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #222;
-}
-
-.container {
-  width: 950px;
-  max-width: 95%;
-  margin: 30px auto;
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 24px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-h1 {
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-
-.controls {
-  display: grid;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.control-group {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-}
-
-.control-group label,
-.control-group span {
-  font-weight: bold;
-}
-
-select,
-input[type="color"],
-button {
-  font-size: 16px;
-}
-
-button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 10px;
-  background: #2d7ef7;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #1768de;
-}
-
-.buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.info-panel {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
-}
-
-.info-box {
-  background: #eef3f8;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: bold;
-}
-
-.message {
-  min-height: 24px;
-  font-weight: bold;
-  margin-bottom: 18px;
-}
-
-#gameArea {
-  width: 100%;
-  height: 480px;
-  border: 3px solid #222;
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(45deg, #f9f9f9 25%, transparent 25%),
-    linear-gradient(-45deg, #f9f9f9 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f9f9f9 75%),
-    linear-gradient(-45deg, transparent 75%, #f9f9f9 75%);
-  background-size: 24px 24px;
-  background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
-  background-color: #ffffff;
-}
-
-.pixel {
-  position: absolute;
-  cursor: pointer;
-  border-radius: 4px;
-  border: 2px solid rgba(0, 0, 0, 0.35);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.hidden {
-  display: none;
-}
-
 .image-choices {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   flex-wrap: wrap;
   width: 100%;
 }
 
 .image-card {
-  width: 150px;
+  width: 90px;
   border: 2px solid #cfd8e3;
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 6px;
   background: #fafcff;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   transition: 0.2s;
 }
 
@@ -148,15 +29,15 @@ button:hover {
 
 .image-card img {
   width: 100%;
-  height: 90px;
+  height: 50px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
   display: block;
 }
 
 .image-card span {
   text-align: center;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
 }
 
