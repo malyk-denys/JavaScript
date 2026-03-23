@@ -5,7 +5,7 @@ const colorBlock = document.getElementById("colorBlock");
 const imageBlock = document.getElementById("imageBlock");
 
 const colorInput = document.getElementById("pixelColor");
-const imageInput = document.getElementById("pixelImage");
+const imageSelect = document.getElementById("pixelImageSelect");
 
 const timeSpan = document.getElementById("time");
 const scoreSpan = document.getElementById("score");
@@ -34,7 +34,6 @@ let timeLeft = 0;
 let timerId = null;
 let pixel = null;
 let gameActive = false;
-let currentImageURL = null;
 let currentSize = 0;
 let currentClickTime = 0;
 
@@ -54,13 +53,6 @@ function updateModeBlocks() {
   }
 }
 
-function clearOldImageURL() {
-  if (currentImageURL) {
-    URL.revokeObjectURL(currentImageURL);
-    currentImageURL = null;
-  }
-}
-
 function resetGameArea() {
   gameArea.innerHTML = "";
   pixel = null;
@@ -71,7 +63,6 @@ function resetGameState() {
   timerId = null;
   gameActive = false;
   resetGameArea();
-  clearOldImageURL();
 }
 
 function setMessage(text) {
@@ -90,17 +81,9 @@ function createPixel(size) {
     pixel.style.backgroundColor = colorInput.value;
     pixel.style.backgroundImage = "none";
   } else {
-    const file = imageInput.files[0];
+    const selectedImage = imageSelect.value;
 
-    if (!file) {
-      setMessage("Для режиму картинки потрібно вибрати файл.");
-      return false;
-    }
-
-    clearOldImageURL();
-    currentImageURL = URL.createObjectURL(file);
-
-    pixel.style.backgroundImage = `url("${currentImageURL}")`;
+    pixel.style.backgroundImage = `url("${selectedImage}")`;
     pixel.style.backgroundSize = "cover";
     pixel.style.backgroundPosition = "center";
     pixel.style.backgroundRepeat = "no-repeat";
@@ -176,17 +159,12 @@ function startGame() {
   scoreSpan.textContent = score;
   timeSpan.textContent = currentClickTime;
 
-  const created = createPixel(currentSize);
-
-  if (!created) {
-    timeSpan.textContent = 0;
-    return;
-  }
-
+  createPixel(currentSize);
   movePixel(currentSize);
-  gameActive = true;
 
+  gameActive = true;
   setMessage("Гра розпочалась. Натискай на піксель до завершення таймера.");
+
   restartSmallTimer();
 }
 
