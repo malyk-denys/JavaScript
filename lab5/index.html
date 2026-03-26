@@ -10,70 +10,76 @@
   <div class="container">
     <h1>Pixel Hunt</h1>
 
-    <div class="controls">
-      <div class="control-group">
-        <label for="difficulty">Рівень складності:</label>
-        <select id="difficulty">
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-      </div>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="controls">
+          <div class="control-group">
+            <label for="difficulty">Рівень складності:</label>
+            <select id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
 
-      <div class="control-group">
-        <span>Режим пікселя:</span>
-        <label>
-          <input type="radio" name="mode" value="color" checked />
-          Колір
-        </label>
-        <label>
-          <input type="radio" name="mode" value="image" />
-          Картинка
-        </label>
-      </div>
+          <div class="control-group">
+            <span>Режим пікселя:</span>
+            <label>
+              <input type="radio" name="mode" value="color" checked />
+              Колір
+            </label>
+            <label>
+              <input type="radio" name="mode" value="image" />
+              Картинка
+            </label>
+          </div>
 
-      <div class="control-group" id="colorBlock">
-        <label for="pixelColor">Оберіть колір:</label>
-        <input type="color" id="pixelColor" value="#ff3b30" />
-      </div>
+          <div class="control-group" id="colorBlock">
+            <label for="pixelColor">Оберіть колір:</label>
+            <input type="color" id="pixelColor" value="#ff3b30" />
+          </div>
 
-      <div class="control-group hidden" id="imageBlock">
-        <span>Оберіть картинку:</span>
+          <div class="control-group hidden" id="imageBlock">
+            <span>Оберіть картинку:</span>
 
-        <div class="image-choices">
-          <label class="image-card">
-            <input type="radio" name="pixelImage" value="images/pic1.jpg" checked />
-            <img src="images/pic1.jpg" alt="Картинка 1" />
-            <span>Картинка 1</span>
-          </label>
+            <div class="image-choices">
+              <label class="image-card">
+                <input type="radio" name="pixelImage" value="images/pic1.jpg" checked />
+                <img src="images/pic1.jpg" alt="Картинка 1" />
+                <span>1</span>
+              </label>
 
-          <label class="image-card">
-            <input type="radio" name="pixelImage" value="images/pic2.jpg" />
-            <img src="images/pic2.jpg" alt="Картинка 2" />
-            <span>Картинка 2</span>
-          </label>
+              <label class="image-card">
+                <input type="radio" name="pixelImage" value="images/pic2.jpg" />
+                <img src="images/pic2.jpg" alt="Картинка 2" />
+                <span>2</span>
+              </label>
 
-          <label class="image-card">
-            <input type="radio" name="pixelImage" value="images/pic3.jpg" />
-            <img src="images/pic3.jpg" alt="Картинка 3" />
-            <span>Картинка 3</span>
-          </label>
+              <label class="image-card">
+                <input type="radio" name="pixelImage" value="images/pic3.jpg" />
+                <img src="images/pic3.jpg" alt="Картинка 3" />
+                <span>3</span>
+              </label>
+            </div>
+          </div>
+
+          <button id="startBtn">Start</button>
         </div>
-      </div>
 
-      <div class="buttons">
-        <button id="startBtn">Start</button>
-      </div>
+        <div class="info-panel">
+          <div class="info-box">Час: <span id="time">0</span></div>
+          <div class="info-box">Рахунок: <span id="score">0</span></div>
+        </div>
+
+        <p id="message" class="message">
+          Оберіть параметри та натисніть Start
+        </p>
+      </aside>
+
+      <main class="game-panel">
+        <div id="gameArea"></div>
+      </main>
     </div>
-
-    <div class="info-panel">
-      <div class="info-box">Час: <span id="time">0</span></div>
-      <div class="info-box">Рахунок: <span id="score">0</span></div>
-    </div>
-
-    <p id="message" class="message">Оберіть параметри та натисніть Start</p>
-
-    <div id="gameArea"></div>
   </div>
 
   <script src="script.js"></script>
