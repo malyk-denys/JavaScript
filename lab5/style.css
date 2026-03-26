@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -10,32 +15,53 @@ body {
 }
 
 .container {
-  width: 950px;
-  max-width: 95%;
-  margin: 30px auto;
+  width: min(1400px, 96vw);
+  height: calc(100vh - 20px);
+  margin: 10px auto;
   background: #ffffff;
   border-radius: 14px;
-  padding: 24px;
+  padding: 16px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
+  margin: 0 0 14px 0;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 24px;
+  font-size: 44px;
+  line-height: 1;
+}
+
+.app-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+  min-height: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
 }
 
 .controls {
   display: grid;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #dbe3ec;
+  border-radius: 12px;
+  background: #fafcff;
 }
 
 .control-group {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .control-group label,
@@ -49,6 +75,19 @@ button {
   font-size: 16px;
 }
 
+select {
+  padding: 4px 8px;
+}
+
+input[type="color"] {
+  width: 64px;
+  height: 36px;
+  padding: 2px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: white;
+}
+
 button {
   padding: 10px 18px;
   border: none;
@@ -56,6 +95,7 @@ button {
   background: #2d7ef7;
   color: white;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
@@ -63,33 +103,51 @@ button:hover {
 }
 
 .info-panel {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 .info-box {
   background: #eef3f8;
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 10px;
   font-weight: bold;
+  text-align: center;
 }
 
 .message {
-  min-height: 24px;
+  margin: 0;
+  padding: 12px;
+  min-height: 70px;
+  border-radius: 10px;
+  background: #f7f9fc;
   font-weight: bold;
-  margin-bottom: 18px;
+  line-height: 1.35;
+  border: 1px solid #e1e8f0;
+}
+
+.game-panel {
+  min-height: 0;
+  display: flex;
 }
 
 #gameArea {
   width: 100%;
-  height: 420px;
+  height: 100%;
+  min-height: 520px;
   border: 3px solid #222;
   border-radius: 12px;
   position: relative;
   overflow: hidden;
-  background: #ffffff;
+  background:
+    linear-gradient(45deg, #f9f9f9 25%, transparent 25%),
+    linear-gradient(-45deg, #f9f9f9 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f9f9f9 75%),
+    linear-gradient(-45deg, transparent 75%, #f9f9f9 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+  background-color: #ffffff;
 }
 
 .pixel {
@@ -109,21 +167,21 @@ button:hover {
 
 .image-choices {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
   width: 100%;
 }
 
 .image-card {
-  width: 90px;
+  width: 72px;
   border: 2px solid #cfd8e3;
   border-radius: 10px;
-  padding: 6px;
+  padding: 5px;
   background: #fafcff;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .image-card input[type="radio"] {
@@ -132,7 +190,7 @@ button:hover {
 
 .image-card img {
   width: 100%;
-  height: 50px;
+  height: 40px;
   object-fit: cover;
   border-radius: 6px;
   display: block;
@@ -140,11 +198,27 @@ button:hover {
 
 .image-card span {
   text-align: center;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: bold;
 }
 
 .image-card:has(input:checked) {
   border-color: #2d7ef7;
   box-shadow: 0 0 0 3px rgba(45, 126, 247, 0.18);
+}
+
+@media (max-width: 980px) {
+  .container {
+    height: auto;
+    min-height: calc(100vh - 20px);
+  }
+
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #gameArea {
+    height: 420px;
+    min-height: 420px;
+  }
 }
