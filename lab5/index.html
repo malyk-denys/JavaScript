@@ -24,24 +24,17 @@
 
           <div class="control-group">
             <span>Режим пікселя:</span>
-            <label>
-              <input type="radio" name="mode" value="color" checked />
-              Колір
-            </label>
-            <label>
-              <input type="radio" name="mode" value="image" />
-              Картинка
-            </label>
+            <label><input type="radio" name="mode" value="color" checked /> Колір</label>
+            <label><input type="radio" name="mode" value="image" /> Картинка</label>
           </div>
 
           <div class="control-group" id="colorBlock">
-            <label for="pixelColor">Оберіть колір:</label>
+            <label for="pixelColor">Колір:</label>
             <input type="color" id="pixelColor" value="#ff3b30" />
           </div>
 
           <div class="control-group hidden" id="imageBlock">
-            <span>Оберіть картинку:</span>
-
+            <span>Картинка:</span>
             <div class="image-choices">
               <label class="image-card">
                 <input type="radio" name="pixelImage" value="images/pic1.jpg" checked />
@@ -71,9 +64,7 @@
           <div class="info-box">Рахунок: <span id="score">0</span></div>
         </div>
 
-        <p id="message" class="message">
-          Оберіть параметри та натисніть Start
-        </p>
+        <p id="message" class="message">Оберіть параметри та натисніть Start</p>
       </aside>
 
       <main class="game-panel">
