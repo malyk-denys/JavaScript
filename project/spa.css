@@ -1,11 +1,10 @@
-.page-view {
+.spa-page {
   display: none;
 }
 
-.page-view.is-active {
+.spa-page.spa-page-active {
   display: block;
 }
-
 .catalog-category-panel {
   display: none;
 }
