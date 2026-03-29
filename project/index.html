@@ -17,7 +17,7 @@
     rel="stylesheet"
   />
 
-<link rel="stylesheet" href="spa.css">
+  <link rel="stylesheet" href="spa.css" />
 </head>
 <body>
 
@@ -73,6 +73,7 @@
   <main class="site-main">
     <div class="site-main-container container">
 
+      <!-- HOME -->
       <section id="spa-page-home" class="spa-page spa-page-active home-page">
         <div class="row align-items-center g-5">
           <div class="col-lg-6">
@@ -134,6 +135,7 @@
         </div>
       </section>
 
+      <!-- CATALOG -->
       <section id="spa-page-catalog" class="spa-page catalog-page">
         <div class="catalog-page-header text-center">
           <span class="catalog-page-label">Каталог</span>
@@ -144,499 +146,91 @@
         </div>
 
         <div class="catalog-page-category-buttons d-flex flex-wrap justify-content-center gap-3">
-          <button type="button" class="catalog-page-category-button catalog-page-category-button-active" data-catalog="sedans">
+          <button
+            type="button"
+            class="catalog-page-category-button catalog-page-category-button-active"
+            data-catalog-category="sedans"
+          >
             Седани
           </button>
-          <button type="button" class="catalog-page-category-button" data-catalog="suv">
+
+          <button
+            type="button"
+            class="catalog-page-category-button"
+            data-catalog-category="suv"
+          >
             SUV
           </button>
-          <button type="button" class="catalog-page-category-button" data-catalog="coupe">
+
+          <button
+            type="button"
+            class="catalog-page-category-button"
+            data-catalog-category="coupe"
+          >
             Купе
           </button>
-          <button type="button" class="catalog-page-category-button" data-catalog="cabrio">
+
+          <button
+            type="button"
+            class="catalog-page-category-button"
+            data-catalog-category="cabrio"
+          >
             Кабріолети
           </button>
-          <button type="button" class="catalog-page-category-button" data-catalog="minivans">
+
+          <button
+            type="button"
+            class="catalog-page-category-button"
+            data-catalog-category="minivans"
+          >
             Мінівени
           </button>
-          <button type="button" class="catalog-page-category-button" data-catalog="electric">
+
+          <button
+            type="button"
+            class="catalog-page-category-button"
+            data-catalog-category="electric"
+          >
             Електричні моделі
           </button>
         </div>
 
-        <div class="catalog-page-category-panels">
-
-          <div id="catalog-panel-sedans" class="catalog-page-category-panel catalog-page-category-panel-active">
-            <div class="row g-4">
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/c-class.jpg" alt="Mercedes C-Class" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Седани</span>
-                    <h3 class="catalog-page-car-title">Mercedes C-Class</h3>
-                    <p class="catalog-page-car-text">
-                      Стильний седан для комфортних щоденних поїздок.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $52,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/e-class.jpg" alt="Mercedes E-Class" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Седани</span>
-                    <h3 class="catalog-page-car-title">Mercedes E-Class</h3>
-                    <p class="catalog-page-car-text">
-                      Бізнес-седан з преміальним салоном і сучасними технологіями.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                      <span class="catalog-page-car-info-item">Гібрид</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $68,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/s-class.jpg" alt="Mercedes S-Class" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Седани</span>
-                    <h3 class="catalog-page-car-title">Mercedes S-Class</h3>
-                    <p class="catalog-page-car-text">
-                      Флагманський седан із найвищим рівнем преміальності.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $112,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-            </div>
-          </div>
-
-          <div id="catalog-panel-suv" class="catalog-page-category-panel">
-            <div class="row g-4">
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/gla.jpg" alt="Mercedes GLA" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">SUV</span>
-                    <h3 class="catalog-page-car-title">Mercedes GLA</h3>
-                    <p class="catalog-page-car-text">
-                      Компактний SUV для активного міського життя.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">FWD</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $46,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/glc.jpg" alt="Mercedes GLC" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">SUV</span>
-                    <h3 class="catalog-page-car-title">Mercedes GLC</h3>
-                    <p class="catalog-page-car-text">
-                      Універсальний SUV для міста, сім’ї та подорожей.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">AWD</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $59,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/gle.jpg" alt="Mercedes GLE" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">SUV</span>
-                    <h3 class="catalog-page-car-title">Mercedes GLE</h3>
-                    <p class="catalog-page-car-text">
-                      Просторий SUV бізнес-класу з високим комфортом.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">AWD</span>
-                      <span class="catalog-page-car-info-item">Дизель</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $77,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-            </div>
-          </div>
-
-          <div id="catalog-panel-coupe" class="catalog-page-category-panel">
-            <div class="row g-4">
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/cla-coupe.jpg" alt="Mercedes CLA Coupe" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Купе</span>
-                    <h3 class="catalog-page-car-title">Mercedes CLA Coupe</h3>
-                    <p class="catalog-page-car-text">
-                      Виразне купе зі спортивним характером.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $49,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/cle-coupe.jpg" alt="Mercedes CLE Coupe" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Купе</span>
-                    <h3 class="catalog-page-car-title">Mercedes CLE Coupe</h3>
-                    <p class="catalog-page-car-text">
-                      Поєднання елегантності, динаміки та сучасності.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                      <span class="catalog-page-car-info-item">Гібрид</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $64,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/amg-gt.jpg" alt="Mercedes AMG GT Coupe" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Купе</span>
-                    <h3 class="catalog-page-car-title">Mercedes AMG GT Coupe</h3>
-                    <p class="catalog-page-car-text">
-                      Потужне спортивне купе для максимальних емоцій.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">AMG</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $138,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-            </div>
-          </div>
-
-          <div id="catalog-panel-cabrio" class="catalog-page-category-panel">
-            <div class="row g-4">
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/cle-cabrio.jpg" alt="Mercedes CLE Cabriolet" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Кабріолети</span>
-                    <h3 class="catalog-page-car-title">Mercedes CLE Cabriolet</h3>
-                    <p class="catalog-page-car-text">
-                      Елегантний кабріолет для стильних подорожей.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $72,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/sl-roadster.jpg" alt="Mercedes SL Roadster" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Кабріолети</span>
-                    <h3 class="catalog-page-car-title">Mercedes SL Roadster</h3>
-                    <p class="catalog-page-car-text">
-                      Легендарний roadster із спортивною харизмою.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">AMG</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $129,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/amg-roadster.jpg" alt="Mercedes AMG Roadster" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Кабріолети</span>
-                    <h3 class="catalog-page-car-title">Mercedes AMG Roadster</h3>
-                    <p class="catalog-page-car-text">
-                      Відкритий спортивний автомобіль для яскравого стилю.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">AMG</span>
-                      <span class="catalog-page-car-info-item">Бензин</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $145,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-            </div>
-          </div>
-
-          <div id="catalog-panel-minivans" class="catalog-page-category-panel">
-            <div class="row g-4">
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/v-class.jpg" alt="Mercedes V-Class" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Мінівени</span>
-                    <h3 class="catalog-page-car-title">Mercedes V-Class</h3>
-                    <p class="catalog-page-car-text">
-                      Преміальний мінівен для сім’ї та бізнес-поїздок.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                      <span class="catalog-page-car-info-item">Дизель</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $63,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/vito-tourer.jpg" alt="Mercedes Vito Tourer" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Мінівени</span>
-                    <h3 class="catalog-page-car-title">Mercedes Vito Tourer</h3>
-                    <p class="catalog-page-car-text">
-                      Місткий автомобіль для пасажирських перевезень.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">Механіка</span>
-                      <span class="catalog-page-car-info-item">Дизель</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $44,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/eqv.jpg" alt="Mercedes EQV" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Мінівени</span>
-                    <h3 class="catalog-page-car-title">Mercedes EQV</h3>
-                    <p class="catalog-page-car-text">
-                      Електричний мінівен із сучасним комфортом.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">EV</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $71,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-            </div>
-          </div>
-
-          <div id="catalog-panel-electric" class="catalog-page-category-panel">
-            <div class="row g-4">
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/eqa.jpg" alt="Mercedes EQA" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Електричні моделі</span>
-                    <h3 class="catalog-page-car-title">Mercedes EQA</h3>
-                    <p class="catalog-page-car-text">
-                      Компактний електричний кросовер для міста.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">EV</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $51,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/eqe.jpg" alt="Mercedes EQE" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Електричні моделі</span>
-                    <h3 class="catalog-page-car-title">Mercedes EQE</h3>
-                    <p class="catalog-page-car-text">
-                      Електроседан бізнес-класу з цифровим салоном.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">EV</span>
-                      <span class="catalog-page-car-info-item">Автомат</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $74,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                <article class="catalog-page-car-card">
-                  <div class="catalog-page-car-image-box">
-                    <img src="assets/img/eqs.jpg" alt="Mercedes EQS" class="catalog-page-car-image img-fluid" />
-                  </div>
-                  <div class="catalog-page-car-content">
-                    <span class="catalog-page-car-category">Електричні моделі</span>
-                    <h3 class="catalog-page-car-title">Mercedes EQS</h3>
-                    <p class="catalog-page-car-text">
-                      Флагманський електромобіль Mercedes із максимальною технологічністю.
-                    </p>
-                    <div class="catalog-page-car-info">
-                      <span class="catalog-page-car-info-item">2024</span>
-                      <span class="catalog-page-car-info-item">EV</span>
-                      <span class="catalog-page-car-info-item">Premium</span>
-                    </div>
-                    <div class="catalog-page-car-bottom">
-                      <span class="catalog-page-car-price">від $118,000</span>
-                      <a href="#" class="catalog-page-car-button btn">Детальніше</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-            </div>
-          </div>
-
+        <div class="catalog-page-cars-wrapper">
+          <div class="row g-4" id="catalog-page-cars-container"></div>
         </div>
       </section>
 
+      <!-- CARD TEMPLATE -->
+      <template id="catalog-page-car-template">
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+          <article class="catalog-page-car-card">
+            <div class="catalog-page-car-image-box">
+              <img src="" alt="" class="catalog-page-car-image img-fluid" />
+            </div>
+
+            <div class="catalog-page-car-content">
+              <span class="catalog-page-car-category"></span>
+
+              <h3 class="catalog-page-car-title"></h3>
+
+              <p class="catalog-page-car-text"></p>
+
+              <div class="catalog-page-car-info">
+                <span class="catalog-page-car-info-item catalog-page-car-year"></span>
+                <span class="catalog-page-car-info-item catalog-page-car-transmission"></span>
+                <span class="catalog-page-car-info-item catalog-page-car-fuel"></span>
+              </div>
+
+              <div class="catalog-page-car-bottom">
+                <span class="catalog-page-car-price"></span>
+                <a href="#" class="catalog-page-car-button btn">Детальніше</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </template>
+
+      <!-- PROMOTIONS -->
       <section id="spa-page-promotions" class="spa-page promotions-page">
         <div class="promotions-page-header text-center">
           <span class="promotions-page-label">Акції</span>
@@ -682,6 +276,7 @@
         </div>
       </section>
 
+      <!-- ABOUT -->
       <section id="spa-page-about" class="spa-page about-page">
         <div class="row align-items-center g-5">
           <div class="col-lg-6">
@@ -697,6 +292,7 @@
           <div class="col-lg-6">
             <div class="about-page-content">
               <span class="about-page-label">Про компанію</span>
+
               <h1 class="about-page-title">
                 Сучасний простір для вибору преміального автомобіля
               </h1>
@@ -715,7 +311,7 @@
                   <div class="about-page-feature-card">Преміальний стиль</div>
                 </div>
                 <div class="col-sm-6">
-                  <div class="about-page-feature-card">Зручний SPA-інтерфейс</div>
+                  <div class="about-page-feature-card">Зручний інтерфейс</div>
                 </div>
                 <div class="col-sm-6">
                   <div class="about-page-feature-card">Адаптивний дизайн</div>
@@ -729,6 +325,7 @@
         </div>
       </section>
 
+      <!-- CONTACTS -->
       <section id="spa-page-contacts" class="spa-page contacts-page">
         <div class="contacts-page-header text-center">
           <span class="contacts-page-label">Контакти</span>
@@ -789,12 +386,13 @@
         </div>
       </section>
 
+      <!-- GAME -->
       <section id="spa-page-game" class="spa-page game-page">
         <div class="game-page-header text-center">
           <span class="game-page-label">Гра</span>
           <h1 class="game-page-title">Аркадна гра у стилі Mercedes</h1>
           <p class="game-page-text">
-            У цьому блоці буде розміщена тематична мінігра, яка відкриватиметься без перезавантаження сторінки.
+            У цьому блоці буде розміщена тематична мінігра.
           </p>
         </div>
 
@@ -815,7 +413,7 @@
           <div class="site-footer-block">
             <h4 class="site-footer-title">Mercedes Showroom</h4>
             <p class="site-footer-text">
-              SPA-каталог автомобілів Mercedes-Benz із сучасною адаптивною структурою.
+              каталог автомобілів Mercedes-Benz.
             </p>
           </div>
         </div>
@@ -843,5 +441,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="view-switcher.js"></script>
+  <script src="catalog-renderer.js"></script>
 </body>
 </html>
