@@ -1,27 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const viewLinks = document.querySelectorAll("[data-view-link]");
-  const pageViews = document.querySelectorAll(".page-view");
-  const navLinks = document.querySelectorAll(".site-header-menu-link");
-  const navCollapse = document.getElementById("mainNav");
+  const pageLinks = document.querySelectorAll("[data-page]");
+  const pages = document.querySelectorAll(".spa-page");
+  const navLinks = document.querySelectorAll(".site-header-nav-link");
+  const navCollapse = document.getElementById("siteHeaderMenu");
 
-  function showView(viewName) {
-    pageViews.forEach((view) => {
-      view.classList.remove("is-active");
+  function showPage(pageName) {
+    pages.forEach((page) => {
+      page.classList.remove("spa-page-active");
     });
 
-    const targetView = document.getElementById(`view-${viewName}`);
-    if (targetView) {
-      targetView.classList.add("is-active");
+    const targetPage = document.getElementById(`spa-page-${pageName}`);
+    if (targetPage) {
+      targetPage.classList.add("spa-page-active");
     }
 
     navLinks.forEach((link) => {
       link.classList.remove("active");
-      if (link.dataset.viewLink === viewName) {
+      if (link.dataset.page === pageName) {
         link.classList.add("active");
       }
     });
 
-    history.replaceState(null, "", `#${viewName}`);
+    history.replaceState(null, "", `#${pageName}`);
 
     if (navCollapse && navCollapse.classList.contains("show")) {
       const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navCollapse);
@@ -29,17 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  viewLinks.forEach((link) => {
+  pageLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      const viewName = link.dataset.viewLink;
-      showView(viewName);
+      const pageName = link.dataset.page;
+      showPage(pageName);
     });
   });
 
-  const initialView = window.location.hash
+  const initialPage = window.location.hash
     ? window.location.hash.replace("#", "")
     : "home";
 
-  showView(initialView);
+  showPage(initialPage);
 });
