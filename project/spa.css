@@ -1,0 +1,15 @@
+.page-view {
+  display: none;
+}
+
+.page-view.is-active {
+  display: block;
+}
+
+.catalog-category-panel {
+  display: none;
+}
+
+.catalog-category-panel.is-active {
+  display: block;
+}
