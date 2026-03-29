@@ -17,7 +17,16 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="spa.css" />
+  <link rel="stylesheet" href="css/spa.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/catalog.css" />
+  <link rel="stylesheet" href="css/promotions.css" />
+  <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/contacts.css" />
+  <link rel="stylesheet" href="css/game.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
 
@@ -73,7 +82,6 @@
   <main class="site-main">
     <div class="site-main-container container">
 
-      <!-- HOME -->
       <section id="spa-page-home" class="spa-page spa-page-active home-page">
         <div class="row align-items-center g-5">
           <div class="col-lg-6">
@@ -135,7 +143,6 @@
         </div>
       </section>
 
-      <!-- CATALOG -->
       <section id="spa-page-catalog" class="spa-page catalog-page">
         <div class="catalog-page-header text-center">
           <span class="catalog-page-label">Каталог</span>
@@ -145,62 +152,23 @@
           </p>
         </div>
 
-        <div class="catalog-page-category-buttons d-flex flex-wrap justify-content-center gap-3">
-          <button
-            type="button"
-            class="catalog-page-category-button catalog-page-category-button-active"
-            data-catalog-category="sedans"
-          >
-            Седани
-          </button>
-
-          <button
-            type="button"
-            class="catalog-page-category-button"
-            data-catalog-category="suv"
-          >
-            SUV
-          </button>
-
-          <button
-            type="button"
-            class="catalog-page-category-button"
-            data-catalog-category="coupe"
-          >
-            Купе
-          </button>
-
-          <button
-            type="button"
-            class="catalog-page-category-button"
-            data-catalog-category="cabrio"
-          >
-            Кабріолети
-          </button>
-
-          <button
-            type="button"
-            class="catalog-page-category-button"
-            data-catalog-category="minivans"
-          >
-            Мінівени
-          </button>
-
-          <button
-            type="button"
-            class="catalog-page-category-button"
-            data-catalog-category="electric"
-          >
-            Електричні моделі
-          </button>
-        </div>
+        <div
+          class="catalog-page-category-buttons d-flex flex-wrap justify-content-center gap-3"
+          id="catalog-page-category-container"
+        ></div>
 
         <div class="catalog-page-cars-wrapper">
           <div class="row g-4" id="catalog-page-cars-container"></div>
         </div>
       </section>
 
-      <!-- CARD TEMPLATE -->
+      <template id="catalog-page-category-template">
+        <button
+          type="button"
+          class="catalog-page-category-button"
+        ></button>
+      </template>
+
       <template id="catalog-page-car-template">
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
           <article class="catalog-page-car-card">
@@ -230,7 +198,6 @@
         </div>
       </template>
 
-      <!-- PROMOTIONS -->
       <section id="spa-page-promotions" class="spa-page promotions-page">
         <div class="promotions-page-header text-center">
           <span class="promotions-page-label">Акції</span>
@@ -276,7 +243,6 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
       <section id="spa-page-about" class="spa-page about-page">
         <div class="row align-items-center g-5">
           <div class="col-lg-6">
@@ -311,7 +277,7 @@
                   <div class="about-page-feature-card">Преміальний стиль</div>
                 </div>
                 <div class="col-sm-6">
-                  <div class="about-page-feature-card">Зручний інтерфейс</div>
+                  <div class="about-page-feature-card">Зручний SPA-інтерфейс</div>
                 </div>
                 <div class="col-sm-6">
                   <div class="about-page-feature-card">Адаптивний дизайн</div>
@@ -325,7 +291,6 @@
         </div>
       </section>
 
-      <!-- CONTACTS -->
       <section id="spa-page-contacts" class="spa-page contacts-page">
         <div class="contacts-page-header text-center">
           <span class="contacts-page-label">Контакти</span>
@@ -386,13 +351,12 @@
         </div>
       </section>
 
-      <!-- GAME -->
       <section id="spa-page-game" class="spa-page game-page">
         <div class="game-page-header text-center">
           <span class="game-page-label">Гра</span>
           <h1 class="game-page-title">Аркадна гра у стилі Mercedes</h1>
           <p class="game-page-text">
-            У цьому блоці буде розміщена тематична мінігра.
+            У цьому блоці буде розміщена тематична мінігра, яка відкриватиметься без перезавантаження сторінки.
           </p>
         </div>
 
@@ -440,7 +404,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="view-switcher.js"></script>
-  <script src="catalog-renderer.js"></script>
+  <script src="js/view-switcher.js"></script>
+  <script src="js/catalog-renderer.js"></script>
 </body>
 </html>
