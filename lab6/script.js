@@ -167,7 +167,7 @@ async function loadPuzzles() {
       throw new Error('Некоректний формат puzzles.json');
     }
 
-    puzzles = lab6.puzzles;
+    puzzles = data.puzzles;
     startNewGame();
   } catch (error) {
     console.error('Помилка завантаження JSON:', error);
