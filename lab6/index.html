@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lights Out — Лабораторна робота №6</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="panel">
+      <div class="panel__top">
+        <div>
+          <p class="eyebrow">JavaScript · DOM · JSON</p>
+          <h1>Lights Out</h1>
+          <p class="subtitle">
+            Натискайте на клітинки, щоб перемикати їх та сусідні по вертикалі й горизонталі.
+            Мета — вимкнути всі джерела світла.
+          </p>
+        </div>
+        <button id="new-game-btn" class="primary-btn" type="button">New Game</button>
+      </div>
+
+      <div class="stats">
+        <article class="stat-card">
+          <span class="stat-label">Час</span>
+          <strong id="timer">00:00</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Ходи</span>
+          <strong id="moves">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Ціль</span>
+          <strong id="goal">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Поточний шаблон</span>
+          <strong id="puzzle-id">—</strong>
+        </article>
+      </div>
+
+      <div class="game-layout">
+        <section class="board-wrap" aria-label="Ігрове поле">
+          <div id="board" class="board" role="grid" aria-label="Поле гри Lights Out"></div>
+        </section>
+
+        <aside class="side-info">
+          <div class="message-card">
+            <h2>Стан гри</h2>
+            <p id="status-message">Гру завантажено. Почніть розв’язання.</p>
+          </div>
+
+          <div class="message-card">
+            <h2>Правила</h2>
+            <ul>
+              <li>Поле має розмір 5 × 5.</li>
+              <li>Клік змінює стан вибраної клітинки та її сусідів.</li>
+              <li>Перемога настає, коли всі клітинки вимкнені.</li>
+              <li>Кнопка <b>New Game</b> запускає нову гру без оновлення сторінки.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
