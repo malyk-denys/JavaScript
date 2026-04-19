@@ -155,7 +155,7 @@ function startNewGame() {
 
 async function loadPuzzles() {
   try {
-    const response = await fetch('./data/puzzles.json', { cache: 'no-store' });
+    const response = await fetch('./puzzles.json', { cache: 'no-store' });
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
@@ -171,7 +171,7 @@ async function loadPuzzles() {
     startNewGame();
   } catch (error) {
     console.error('Помилка завантаження JSON:', error);
-    updateStatus('Не вдалося завантажити ігрові дані з JSON-файлу. Перевірте структуру data/puzzles.json.');
+    updateStatus('Не вдалося завантажити ігрові дані з JSON-файлу. Перевірте структуру /puzzles.json.');
     newGameButton.disabled = true;
   }
 }
