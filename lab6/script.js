@@ -5,7 +5,7 @@ const goalElement = document.getElementById('goal');
 const puzzleIdElement = document.getElementById('puzzle-id');
 const statusMessageElement = document.getElementById('status-message');
 const newGameButton = document.getElementById('new-game-btn');
-
+const resetGameButton = document.getElementById('reset-game-btn');
 const GRID_SIZE = 5;
 
 let puzzles = [];
@@ -33,6 +33,26 @@ function startTimer() {
     timerElement.textContent = formatTime(timerSeconds);
   }, 1000);
 }
+
+function resetCurrentPuzzle() {
+  if (currentPuzzleIndex === -1 || !puzzles.length) {
+    updateStatus('Неможливо скинути гру: поточне поле ще не завантажене.');
+    return;
+  }
+
+  resetGameState();
+
+  const puzzle = puzzles[currentPuzzleIndex];
+  board = cloneGrid(puzzle.grid);
+  goalElement.textContent = String(puzzle.goal);
+  puzzleIdElement.textContent = puzzle.id.toUpperCase();
+
+  renderBoard();
+  isGameActive = true;
+  startTimer();
+  updateStatus('Поточне поле скинуто до початкового стану.');
+} 
+
 
 function stopTimer() {
   if (timerInterval !== null) {
@@ -177,4 +197,6 @@ async function loadPuzzles() {
 }
 
 newGameButton.addEventListener('click', startNewGame);
+resetGameButton.addEventListener('click', resetCurrentPuzzle);
 document.addEventListener('DOMContentLoaded', loadPuzzles);
+
