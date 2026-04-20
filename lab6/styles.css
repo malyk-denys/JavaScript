@@ -205,6 +205,14 @@ body {
     padding: 10px 16px;
   }
 
+  .bottom-panel {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+
   :root {
     --cell-size: min(12.2vw, 10.2vh, 78px);
   }
