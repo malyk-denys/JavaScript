@@ -1,0 +1,38 @@
+{
+  "categoryName": "Мікрохвильові печі",
+  "categoryDescription": "Категорія техніки для швидкого розігріву, розморожування та приготування їжі.",
+  "items": [
+    {
+      "id": 1,
+      "name": "MicroHeat 20L",
+      "shortname": "microheat_20l",
+      "description": "Проста мікрохвильова піч на 20 літрів для щоденного використання.",
+      "price": 3999,
+      "image": "https://placehold.co/200x200?text=Microwave+1"
+    },
+    {
+      "id": 2,
+      "name": "QuickWarm Grill",
+      "shortname": "quickwarm_grill",
+      "description": "Модель з функцією гриля для приготування гарячих страв.",
+      "price": 5799,
+      "image": "https://placehold.co/200x200?text=Microwave+2"
+    },
+    {
+      "id": 3,
+      "name": "SmartCook Digital",
+      "shortname": "smartcook_digital",
+      "description": "Мікрохвильова піч з електронним керуванням і автоматичними програмами.",
+      "price": 6499,
+      "image": "https://placehold.co/200x200?text=Microwave+3"
+    },
+    {
+      "id": 4,
+      "name": "CompactWave",
+      "shortname": "compactwave",
+      "description": "Компактна модель для маленької кухні, офісу або кімнати в гуртожитку.",
+      "price": 3499,
+      "image": "https://placehold.co/200x200?text=Microwave+4"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "categoryName": "Холодильники",
+  "categoryDescription": "Категорія побутової техніки для охолодження та тривалого зберігання продуктів.",
+  "items": [
+    {
+      "id": 1,
+      "name": "FrostLine 300",
+      "shortname": "frostline_300",
+      "description": "Двокамерний холодильник з економним енергоспоживанням та місткою морозильною камерою.",
+      "price": 18999,
+      "image": "https://placehold.co/200x200?text=Fridge+1"
+    },
+    {
+      "id": 2,
+      "name": "CoolMaster Silver",
+      "shortname": "coolmaster_silver",
+      "description": "Сучасний холодильник сріблястого кольору з системою No Frost.",
+      "price": 22499,
+      "image": "https://placehold.co/200x200?text=Fridge+2"
+    },
+    {
+      "id": 3,
+      "name": "EcoFresh Mini",
+      "shortname": "ecofresh_mini",
+      "description": "Компактний холодильник для гуртожитку, офісу або невеликої кухні.",
+      "price": 8999,
+      "image": "https://placehold.co/200x200?text=Fridge+3"
+    },
+    {
+      "id": 4,
+      "name": "FamilyCold XL",
+      "shortname": "familycold_xl",
+      "description": "Великий холодильник для сімейного використання з широкими полицями.",
+      "price": 27999,
+      "image": "https://placehold.co/200x200?text=Fridge+4"
+    }
+  ]
+}

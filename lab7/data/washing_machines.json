@@ -1,0 +1,38 @@
+{
+  "categoryName": "Пральні машини",
+  "categoryDescription": "Категорія техніки для автоматичного прання, полоскання та віджимання речей.",
+  "items": [
+    {
+      "id": 1,
+      "name": "WashPro 7 kg",
+      "shortname": "washpro_7kg",
+      "description": "Пральна машина на 7 кг з базовими програмами для щоденного прання.",
+      "price": 13999,
+      "image": "https://placehold.co/200x200?text=Washer+1"
+    },
+    {
+      "id": 2,
+      "name": "CleanWave Inverter",
+      "shortname": "cleanwave_inverter",
+      "description": "Енергоощадна пральна машина з інверторним двигуном і тихою роботою.",
+      "price": 16999,
+      "image": "https://placehold.co/200x200?text=Washer+2"
+    },
+    {
+      "id": 3,
+      "name": "AquaSmart Slim",
+      "shortname": "aquasmart_slim",
+      "description": "Вузька модель для невеликої ванної кімнати або кухні.",
+      "price": 12499,
+      "image": "https://placehold.co/200x200?text=Washer+3"
+    },
+    {
+      "id": 4,
+      "name": "DryWash Combo",
+      "shortname": "drywash_combo",
+      "description": "Пральна машина з додатковою функцією сушіння білизни.",
+      "price": 23999,
+      "image": "https://placehold.co/200x200?text=Washer+4"
+    }
+  ]
+}

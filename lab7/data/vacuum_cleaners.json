@@ -1,0 +1,38 @@
+{
+  "categoryName": "Пилососи",
+  "categoryDescription": "Категорія техніки для прибирання пилу, сміття та підтримання чистоти в приміщенні.",
+  "items": [
+    {
+      "id": 1,
+      "name": "DustAway Classic",
+      "shortname": "dustaway_classic",
+      "description": "Класичний пилосос для сухого прибирання квартири або будинку.",
+      "price": 4999,
+      "image": "https://placehold.co/200x200?text=Vacuum+1"
+    },
+    {
+      "id": 2,
+      "name": "PowerClean Turbo",
+      "shortname": "powerclean_turbo",
+      "description": "Потужний пилосос з турбощіткою для килимів і м’яких меблів.",
+      "price": 7299,
+      "image": "https://placehold.co/200x200?text=Vacuum+2"
+    },
+    {
+      "id": 3,
+      "name": "AquaVac Wet",
+      "shortname": "aquavac_wet",
+      "description": "Модель з підтримкою вологого прибирання та контейнером для води.",
+      "price": 9499,
+      "image": "https://placehold.co/200x200?text=Vacuum+3"
+    },
+    {
+      "id": 4,
+      "name": "RoboClean Mini",
+      "shortname": "roboclean_mini",
+      "description": "Робот-пилосос для автоматичного щоденного прибирання кімнат.",
+      "price": 10999,
+      "image": "https://placehold.co/200x200?text=Vacuum+4"
+    }
+  ]
+}
