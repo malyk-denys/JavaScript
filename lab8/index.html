@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №8</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Lab 8</div>
+
+    <button class="burger" id="burgerBtn" aria-label="Відкрити меню">
+        ☰
+    </button>
+
+    <nav class="nav" id="navMenu">
+        <a href="#home">🏠 Головна</a>
+        <a href="#carousel">🖼 Карусель</a>
+        <a href="#gallery">📷 Галерея</a>
+        <a href="#ajax">🔄 Ajax</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <h1>Застосування JavaScript для ефектів веб-сторінки</h1>
+        <p>
+            На цій сторінці реалізовано адаптивне меню, карусель,
+            різні зображення для різних розмірів екрана та завантаження JSON-даних через Ajax.
+        </p>
+    </section>
+
+    <section class="section" id="carousel">
+        <h2>Адаптивна карусель</h2>
+
+        <div class="carousel">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="slide">
+                    <img src="https://placehold.co/1000x450/1e293b/ffffff?text=Slide+1" alt="Слайд 1">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1000x450/334155/ffffff?text=Slide+2" alt="Слайд 2">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1000x450/475569/ffffff?text=Slide+3" alt="Слайд 3">
+                </div>
+                <div class="slide">
+                    <img src="https://placehold.co/1000x450/64748b/ffffff?text=Slide+4" alt="Слайд 4">
+                </div>
+            </div>
+
+            <button class="carousel-btn prev" id="prevBtn">‹</button>
+            <button class="carousel-btn next" id="nextBtn">›</button>
+
+            <div class="indicators" id="indicators"></div>
+        </div>
+    </section>
+
+    <section class="section" id="gallery">
+        <h2>Адаптивні зображення</h2>
+
+        <div class="large-images">
+            <h3>Зображення тільки для Large-пристроїв</h3>
+            <div class="image-grid">
+                <img src="https://placehold.co/400x250/0f766e/ffffff?text=Large+1" alt="Large 1">
+                <img src="https://placehold.co/400x250/0d9488/ffffff?text=Large+2" alt="Large 2">
+                <img src="https://placehold.co/400x250/14b8a6/ffffff?text=Large+3" alt="Large 3">
+            </div>
+        </div>
+
+        <div class="medium-images">
+            <h3>Зображення тільки для Medium-пристроїв</h3>
+            <div class="image-grid">
+                <img src="https://placehold.co/400x250/be123c/ffffff?text=Medium+1" alt="Medium 1">
+                <img src="https://placehold.co/400x250/e11d48/ffffff?text=Medium+2" alt="Medium 2">
+                <img src="https://placehold.co/400x250/f43f5e/ffffff?text=Medium+3" alt="Medium 3">
+            </div>
+        </div>
+    </section>
+
+    <section class="section ajax-section" id="ajax">
+        <h2>Ajax-завантаження JSON</h2>
+        <p>
+            Дані нижче завантажуються з окремого JSON-файлу без перезавантаження сторінки.
+        </p>
+
+        <button class="load-btn" id="loadDataBtn">Завантажити дані</button>
+
+        <div class="ajax-result" id="ajaxResult"></div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>Лабораторна робота №8 — HTML, CSS, JavaScript, Ajax, JSON</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
