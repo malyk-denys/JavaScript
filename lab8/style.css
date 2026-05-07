@@ -292,3 +292,37 @@ body {
         display: block;
     }
 }
+
+.info-section {
+    text-align: center;
+}
+
+.info-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+}
+
+.info-box p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.info-btn {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background: #0f172a;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.info-btn:hover {
+    background: #334155;
+    transform: translateY(-2px);
+}
